@@ -1,16 +1,571 @@
-<script type="text/javascript">
-  (function(d, t) {
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peyton Clarke - Civil Engineering Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #f5f5f5;
+    }
+    
+    /* Navigation */
+    nav {
+      background: linear-gradient(135deg, #0066cc 0%, #004999 100%);
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: opacity 0.3s;
+    }
+    
+    nav a:hover {
+      opacity: 0.8;
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 100px 20px;
+      text-align: center;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .profile-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid white;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    
+    .hero h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+    
+    .hero .subtitle {
+      font-size: 24px;
+      opacity: 0.9;
+      margin-bottom: 30px;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+    
+    .btn {
+      padding: 15px 35px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    
+    .btn-primary {
+      background: white;
+      color: #667eea;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+    
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+    
+    .btn-secondary:hover {
+      background: white;
+      color: #667eea;
+    }
+    
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 20px;
+    }
+    
+    /* Section */
+    section {
+      background: white;
+      margin-bottom: 40px;
+      padding: 60px 40px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    
+    section h2 {
+      color: #0066cc;
+      font-size: 36px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    /* About Section */
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    
+    .about-text p {
+      margin-bottom: 15px;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+    
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    
+    .skill-tag {
+      background: #e3f2fd;
+      color: #0066cc;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    
+    /* Experience Section */
+    .experience-item {
+      margin-bottom: 40px;
+      padding: 30px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      border-left: 5px solid #0066cc;
+    }
+    
+    .experience-item h3 {
+      color: #0066cc;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    
+    .experience-meta {
+      color: #666;
+      font-size: 16px;
+      margin-bottom: 15px;
+      font-style: italic;
+    }
+    
+    .experience-item ul {
+      margin-left: 20px;
+      margin-top: 15px;
+    }
+    
+    .experience-item li {
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+    
+    /* Projects Section */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+    .project-card {
+      background: #f8f9fa;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+    
+    .project-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    
+    .project-content {
+      padding: 25px;
+    }
+    
+    .project-card h3 {
+      color: #0066cc;
+      margin-bottom: 10px;
+    }
+    
+    .project-card p {
+      color: #666;
+      line-height: 1.6;
+    }
+    
+    /* AI Demo Section */
+    .ai-demo {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-align: center;
+    }
+    
+    .ai-demo h2 {
+      color: white;
+    }
+    
+    .ai-demo p {
+      font-size: 18px;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+    
+    .demo-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+    }
+    
+    .demo-feature {
+      background: rgba(255,255,255,0.1);
+      padding: 30px;
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+    }
+    
+    .demo-feature-icon {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+    
+    /* Contact Section */
+    .contact-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      text-align: center;
+    }
+    
+    .contact-item {
+      padding: 30px;
+      background: #f8f9fa;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+    }
+    
+    .contact-item:hover {
+      transform: translateY(-5px);
+    }
+    
+    .contact-icon {
+      font-size: 36px;
+      margin-bottom: 15px;
+    }
+    
+    .contact-item h3 {
+      color: #0066cc;
+      margin-bottom: 10px;
+    }
+    
+    .contact-item a {
+      color: #666;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .contact-item a:hover {
+      color: #0066cc;
+    }
+    
+    /* Footer */
+    footer {
+      background: #1a1a1a;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 32px;
+      }
+      
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+      
+      nav ul {
+        gap: 20px;
+      }
+      
+      section {
+        padding: 40px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#ai-demo">AI Demo</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <!-- Replace with your actual image path -->
+      <img src="images/profile.jpg" alt="Peyton Clarke" class="profile-image">
+      
+      <h1>Peyton K. Clarke</h1>
+      <p class="subtitle">Civil Engineering Student | AI Automation Consultant</p>
+      <p>Transportation Design • Project Management • AI Solutions for Engineering Firms</p>
+      
+      <div class="hero-buttons">
+        <a href="resume.pdf" class="btn btn-primary" download>📄 Download Resume</a>
+        <a href="#contact" class="btn btn-secondary">📧 Get In Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    
+    <!-- About Section -->
+    <section id="about">
+      <h2>About Me</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>I'm a civil engineering student at the University of Central Florida (GPA: 3.4) with hands-on experience in transportation and roadway design from my internship at Dewberry Engineering.</p>
+          
+          <p>I've worked on real highway projects, including a 31-mile NCDOT corridor, using tools like MicroStation, OpenRoads, and AutoCAD. I also gained project management experience migrating 1,200+ employees to a new ERP system at SPI.</p>
+          
+          <p>Now, I'm combining my engineering expertise with AI automation to help civil engineering and construction firms capture more business opportunities while reducing administrative costs.</p>
+          
+          <div class="skills">
+            <span class="skill-tag">MicroStation</span>
+            <span class="skill-tag">OpenRoads Designer</span>
+            <span class="skill-tag">AutoCAD</span>
+            <span class="skill-tag">Civil 3D</span>
+            <span class="skill-tag">Revit</span>
+            <span class="skill-tag">Excel/Smartsheet</span>
+            <span class="skill-tag">Project Management</span>
+            <span class="skill-tag">AI Automation</span>
+            <span class="skill-tag">Python (MTA Certified)</span>
+          </div>
+        </div>
+        
+        <div class="about-image">
+          <!-- Replace with an image of you at work, UCF campus, or a project -->
+          <img src="images/dewberry.jpg" alt="Civil Engineering Work" style="width: 100%; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1);">
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+      <h2>Professional Experience</h2>
+      
+      <div class="experience-item">
+        <h3>Transportation Roadway Intern</h3>
+        <p class="experience-meta">Dewberry Civil Engineering Firm | Charlotte, NC | May 2025 - Present</p>
+        <ul>
+          <li>Assisted in design and revision of roadway elements using MicroStation, OpenRoads Designer, and Civil 3D</li>
+          <li>Edited cross sections, plan sheets, profiles and typical sections to support project development</li>
+          <li>Contributed to highway design of a 31-mile corridor, ensuring compliance with NCDOT standards</li>
+          <li>Supported senior engineers with technical tasks and documentation</li>
+        </ul>
+      </div>
+      
+      <div class="experience-item">
+        <h3>Project Management Intern</h3>
+        <p class="experience-meta">SPI (Specialty Products and Insulation) | Charlotte, NC | June 2024 - May 2025</p>
+        <ul>
+          <li>Assisted in migrating 1,200 employees from legacy ERP system (Infor Sxe) to Infor CloudSuite Distribution</li>
+          <li>Successfully onboarded 97% of users through data entry, tracking, and engagement</li>
+          <li>Designed and administered training exams within new system</li>
+          <li>Utilized Excel and Smartsheet for real-time tracking and reporting on migration progress</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+      <h2>Featured Projects</h2>
+      
+      <div class="projects-grid">
+        
+        <div class="project-card">
+          <img src="images/project1.jpg" alt="Highway Design Project" class="project-image">
+          <div class="project-content">
+            <h3>31-Mile NCDOT Highway Corridor</h3>
+            <p>Contributed to the design and documentation of a major North Carolina highway project, working with MicroStation and OpenRoads Designer to create plan sheets and cross sections.</p>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <img src="images/project2.jpg" alt="ERP Migration Project" class="project-image">
+          <div class="project-content">
+            <h3>1,200-Employee ERP Migration</h3>
+            <p>Led user onboarding and training for company-wide system migration, achieving 97% adoption rate through strategic planning and user engagement.</p>
+          </div>
+        </div>
+        
+        <div class="project-card">
+          <img src="images/project3.jpg" alt="Civil Engineering Coursework" class="project-image">
+          <div class="project-content">
+            <h3>Civil Engineering Design Projects</h3>
+            <p>Completed comprehensive drafting and design projects using Revit, demonstrating proficiency in floor plans, architectural specifications, and construction scheduling.</p>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- AI Demo Section -->
+    <section id="ai-demo" class="ai-demo">
+      <h2>AI Automation for Engineering Firms</h2>
+      <p>I help civil engineering and construction companies capture more business opportunities using AI automation.</p>
+      
+      <div class="demo-features">
+        <div class="demo-feature">
+          <div class="demo-feature-icon">🤖</div>
+          <h3>24/7 AI Receptionist</h3>
+          <p>Never miss an RFP inquiry or project call, even after hours</p>
+        </div>
+        
+        <div class="demo-feature">
+          <div class="demo-feature-icon">⚡</div>
+          <h3>Instant Lead Qualification</h3>
+          <p>Automatically qualify prospects and schedule consultations</p>
+        </div>
+        
+        <div class="demo-feature">
+          <div class="demo-feature-icon">💰</div>
+          <h3>$40K+ Annual Savings</h3>
+          <p>Reduce reception costs by 60-70% while improving service</p>
+        </div>
+      </div>
+      
+      <button class="btn btn-primary" onclick="window.voiceflow.chat.open()" style="margin-top: 20px;">
+        💬 Try the AI Assistant Demo
+      </button>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2>Get In Touch</h2>
+      
+      <div class="contact-info">
+        
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <h3>Email</h3>
+          <a href="mailto:peyton1275@gmail.com">peyton1275@gmail.com</a>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <h3>Phone</h3>
+          <a href="tel:+12145295747">(214) 529-5747</a>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">💼</div>
+          <h3>LinkedIn</h3>
+          <a href="YOUR_LINKEDIN_URL" target="_blank">Connect with me</a>
+        </div>
+        
+        <div class="contact-item">
+          <div class="contact-icon">📄</div>
+          <h3>Resume</h3>
+          <a href="resume.pdf" download>Download PDF</a>
+        </div>
+        
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Peyton K. Clarke | Civil Engineering Student & AI Automation Consultant</p>
+    <p>University of Central Florida | Orlando, FL</p>
+  </footer>
+
+  <!-- Voiceflow AI Chat Widget -->
+  <script type="text/javascript">
+    (function(d, t) {
       var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
       v.onload = function() {
         window.voiceflow.chat.load({
-          verify: { projectID: '68f699edd9d3ffa3a05f6ce2' },
+          verify: { projectID: 'YOUR_VOICEFLOW_PROJECT_ID_HERE' },
           url: 'https://general-runtime.voiceflow.com',
           versionID: 'production',
-          voice: {
-            url: "https://runtime-api.voiceflow.com"
+          assistant: {
+            title: 'AI Assistant Demo',
+            description: 'See how it works for engineering firms',
+            color: '#0066cc'
           }
         });
       }
-      v.src = "https://cdn.voiceflow.com/widget-next/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
-  })(document, 'script');
-</script>
+      v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; 
+      v.type = "text/javascript"; 
+      s.parentNode.insertBefore(v, s);
+    })(document, 'script');
+  </script>
+
+</body>
+</html>
